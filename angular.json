@@ -89,6 +89,17 @@
             ],
             "scripts": []
           }
+        },
+        "e2e": {
+          "builder": "playwright-ng-schematics:playwright",
+          "options": {
+            "devServerTarget": "morphoses-frontend-nikosmargaris:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "morphoses-frontend-nikosmargaris:serve:production"
+            }
+          }
         }
       }
     }
