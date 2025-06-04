@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-gray: lightgray;
+
+  --border-medium: 8px;
+
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+
+  --shadow-color: rgba(26, 30, 34, 0.08);
+}
+
+.cards {
+  --card-border-color: var(--color-gray);
+}
