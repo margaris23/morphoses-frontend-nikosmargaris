@@ -8,6 +8,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 
 const API = {
   NOW_PLAYING: '/api/movie/now_playing',
+  SEARCH: '/api/search/movie',
 };
 
 @Injectable({
@@ -19,10 +20,13 @@ export class MoviesService {
   private _query = signal("");
   private query$ = toObservable(this._query);
 
-  nowPlaying(): Observable<MovieItem[]> {
+  movies(): Observable<MovieItem[]> {
     return this.query$.pipe(
       switchMap(query => {
-        const endp = `${API.NOW_PLAYING}?api_key=${env.API_KEY}`;
+        const auth = `api_key=${env.API_KEY}`;
+        const endp = query
+          ? `${API.SEARCH}?query=${query}&${auth}`
+          : `${API.NOW_PLAYING}?${auth}`;
         return this.http.get<APIListResult<Movie>>(endp);
       }),
       map(res => res.results.map(toMovieItem))

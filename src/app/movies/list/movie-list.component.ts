@@ -10,5 +10,5 @@ import { AsyncPipe } from '@angular/common';
 })
 export class MovieListComponent {
   private movieService = inject(MoviesService);
-  protected movies$ = this.movieService.nowPlaying();
+  protected movies$ = this.movieService.movies();
 }

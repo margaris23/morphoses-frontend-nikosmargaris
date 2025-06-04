@@ -1,0 +1,11 @@
+<section>
+  <h2>Search for a Movie</h2>
+  <form autocomplete="false">
+    <label>
+      <span>Search for a movie</span>
+      <input type="text" name="text" [value]="searchInput()" (input)="search($event)">
+    </label>
+    <button type="button" (click)="reset()">x</button>
+    <button type="submit" (click)="search($event)">Search</button>
+  </form>
+</section>

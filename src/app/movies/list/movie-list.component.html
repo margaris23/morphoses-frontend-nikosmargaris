@@ -1,5 +1,5 @@
 <section>
-  <h2>Trending now</h2>
+  <h2>Playing now</h2>
   @for (movie of movies$ | async; track movie.id) {
   <article>
     <h3>{{ movie.title }}</h3>
