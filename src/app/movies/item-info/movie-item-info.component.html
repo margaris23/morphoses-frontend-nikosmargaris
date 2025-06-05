@@ -3,11 +3,26 @@
 @if (info) {
 <!-- {{info | json}} -->
 
-{{reviews$ | async | json}}
-
 @for (video of videos$ | async; track video.id) {
 <iframe [src]="getSafeResourceUrl(video.url)" frameborder="0" allowfullscreen width="560" height="315"></iframe>
 }
+
+<section>
+  <h4>Reviews</h4>
+  @for (review of reviews$ | async; track review.id) {
+  <details>
+    <p>{{review.content}}</p>
+    <summary>What {{review.author}} said ...</summary>
+  </details>
+  }
+</section>
+
+<section>
+  <h4>Recommendations</h4>
+  @for (video of similar$ | async; track video.id) {
+  <img [src]="video.poster" alt="video.title">
+  }
+</section>
 
 } @else {
 Loading...

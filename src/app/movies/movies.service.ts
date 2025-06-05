@@ -5,6 +5,7 @@ import { APIListResult } from '../api.model';
 import { APIService } from '../api.service';
 import { byVideoTeaser, toVideoItem, Video, VideoItem } from './videos.model';
 import { Genre, toGenreMap } from './genres.model';
+import { Review } from './reviews.model';
 
 const API = {
   NOW_PLAYING: '/api/movie/now_playing',
@@ -87,12 +88,17 @@ export class MoviesService {
     );
   }
 
-  similar(id: number) {
-    return this.apiService.fetch<unknown>(API.MOVIE_SIMILAR(id));
+  similar(id: number): Observable<MovieItem[]> {
+    return this.apiService.fetch<APIListResult<Movie>>(API.MOVIE_SIMILAR(id)).pipe(
+      withLatestFrom(this.genres$),
+      map(([res, genres]) => res.results.map(toMovieItem(toGenreMap(genres))))
+    );
   }
 
-  reviews(id: number) {
-    return this.apiService.fetch<unknown>(API.MOVIE_REVIEWS(id));
+  reviews(id: number): Observable<Review[]> {
+    return this.apiService.fetch<APIListResult<Review>>(API.MOVIE_REVIEWS(id)).pipe(
+      map(res => res.results.slice(1, 3))
+    );
   }
 
   search(query: string): void {
