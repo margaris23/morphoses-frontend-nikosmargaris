@@ -27,13 +27,14 @@ export type Genre = {
 }
 
 const POSTER_PATH = 'https://media.themoviedb.org/t/p/w94_and_h141_bestv2';
+const NO_IMAGE = '/no_image.svg';
 
 export const toMovieItem = (genres: Map<number, string>) => (movie: Movie): MovieItem => {
   return {
     id: movie.id,
     title: movie.title,
     originalTitle: movie.original_title,
-    poster: `${POSTER_PATH}${movie.poster_path}`,
+    poster: movie.poster_path ? `${POSTER_PATH}${movie.poster_path}` : NO_IMAGE,
     releaseDate: movie.release_date,
     overview: movie.overview,
     votes: {
