@@ -3,7 +3,8 @@
     <h3>{{ movie().title }}</h3>
     <span class="original-title">({{movie().originalTitle}})</span>
     <p class="movie().meta">
-      <span>Released: <time attr.datetime={{movie().releaseDate}}>{{movie().releaseDate}}</time></span>
+      <span>Released:
+        <time attr.datetime={{movie().releaseDate}}>{{movie().releaseDate | date}}</time></span>&nbsp;
       <span>Score: {{movie().votes.avg}} (voted: {{movie().votes.count}})</span>
     </p>
     <p>{{movie().genres}}</p>
@@ -12,7 +13,7 @@
     <button (click)="toggle()">Toggle</button>
 
     @if(showInfo()) {
-      <app-movie-item-info [id]="movie().id" />
+    <app-movie-item-info [id]="movie().id" />
     }
   </div>
   <img src={{movie().poster}} alt={{movie().title}} height="141" width="94">

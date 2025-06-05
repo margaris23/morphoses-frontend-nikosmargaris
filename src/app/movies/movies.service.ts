@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { map, Observable, switchMap, BehaviorSubject, combineLatest, scan, distinctUntilChanged, shareReplay, withLatestFrom } from 'rxjs';
-import { Movie, MovieDetails, MovieItem, toMovieItem } from './movies.model';
+import { Movie, MovieDetails, MovieDetailsView, MovieItem, toMovieDetailsView, toMovieItem } from './movies.model';
 import { APIListResult } from '../api.model';
 import { APIService } from '../api.service';
 import { byVideoTeaser, toVideoItem, Video, VideoItem } from './videos.model';
@@ -69,13 +69,9 @@ export class MoviesService {
     );
   }
 
-  details(id: number) {
+  details(id: number): Observable<MovieDetailsView> {
     return this.apiService.fetch<MovieDetails>(API.MOVIE_DETAILS(id)).pipe(
-      withLatestFrom(this.genres$),
-      map(([details, genres]) => {
-        console.log(details.video)
-        return details;
-      })
+      map(toMovieDetailsView)
     );
   }
 

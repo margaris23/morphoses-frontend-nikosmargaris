@@ -1,11 +1,23 @@
-@let info = info$ | async;
+@let details = details$ | async;
 
-@if (info) {
-<!-- {{info | json}} -->
+@if (details) {
+<section>
+  <h4>Details</h4>
+  <p><a [href]="details.homepage">HomePage</a></p>
+  <p>Origin:
+    <img [src]="'https://flagsapi.com/' + details.origin.country + '/shiny/32.png'">
+    ({{details.origin.language}})
+  </p>
+  <p>Budget: {{details.budget | currency}} / Revenue: {{details.revenue | currency}}</p>
+  <p>Languages: {{details.languages}} </p>
+</section>
 
-@for (video of videos$ | async; track video.id) {
-<iframe [src]="getSafeResourceUrl(video.url)" frameborder="0" allowfullscreen width="560" height="315"></iframe>
-}
+<section>
+  <h4>Trailers</h4>
+  @for (video of videos$ | async; track video.id) {
+  <iframe [src]="getSafeResourceUrl(video.url)" frameborder="0" allowfullscreen width="560" height="315"></iframe>
+  }
+</section>
 
 <section>
   <h4>Reviews</h4>

@@ -14,26 +14,16 @@ export type Movie = {
 }
 
 export type MovieDetails = Movie & {
-  adult: boolean;
-  backdrop_path: string;
   budget: number;
-  genres: Genre[];
   homepage: string;
-  imdb_id: string;
   origin_country: string[];
   original_language: string;
-  popularity: number;
   revenue: number;
-  status: string;
-  tagline: string;
-  video: boolean; // does not indicate video existence ???
-
-  // UNUSED
-  // belongs_to_collection
-  // spoken_languages
-  // production_companies
-  // production_countries
-  // runtime
+  spoken_languages: {
+    english_name: string;
+    iso_639_1: string;
+    name: string;
+  }[];
 }
 
 // CLIENT
@@ -46,6 +36,14 @@ export type MovieItem = {
   overview: string;
   votes: { avg: string; count: number };
   genres: string;
+}
+
+export type MovieDetailsView = {
+  budget: number;
+  revenue: number;
+  homepage: string;
+  origin: { country: string; language: string };
+  languages: string;
 }
 
 const POSTER_PATH = 'https://media.themoviedb.org/t/p/w94_and_h141_bestv2';
@@ -67,3 +65,13 @@ export const toMovieItem = (genres: Map<number, string>) => (movie: Movie): Movi
   };
 }
 
+export const toMovieDetailsView = (details: MovieDetails): MovieDetailsView => {
+  const { budget, revenue, homepage } = details;
+  return {
+    budget,
+    revenue,
+    homepage,
+    origin: { country: details.origin_country?.[0], language: details.original_language },
+    languages: details.spoken_languages.map(lang => lang.iso_639_1).join(', ')
+  };
+}
