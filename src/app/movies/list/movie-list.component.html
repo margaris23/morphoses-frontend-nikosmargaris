@@ -1,19 +1,7 @@
 <section class="cards movies">
   <h2>Playing now</h2>
   @for (movie of movies$ | async; track movie.id) {
-  <article>
-    <div>
-      <h3>{{ movie.title }}</h3>
-      <span class="original-title">({{movie.originalTitle}})</span>
-      <p class="movie-meta">
-        <span>Released: <time attr.datetime={{movie.releaseDate}}>{{movie.releaseDate}}</time></span>
-        <span>Score: {{movie.votes.avg}} (voted: {{movie.votes.count}})</span>
-      </p>
-      <p>{{movie.genres}}</p>
-      <p class="overview">{{movie.overview}}</p>
-    </div>
-    <img src={{movie.poster}} alt={{movie.title}} height="141" width="94">
-  </article>
+    <app-movie-item [movie]="movie" />
   }
   <p id="loading" style="height: 40px"> </p>
 </section>

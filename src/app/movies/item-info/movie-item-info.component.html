@@ -1,0 +1,14 @@
+@let info = info$ | async;
+
+@if (info) {
+<!-- {{info | json}} -->
+
+{{reviews$ | async | json}}
+
+@for (video of videos$ | async; track video.id) {
+<iframe [src]="getSafeResourceUrl(video.url)" frameborder="0" allowfullscreen width="560" height="315"></iframe>
+}
+
+} @else {
+Loading...
+}

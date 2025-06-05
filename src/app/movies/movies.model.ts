@@ -1,3 +1,6 @@
+import { Genre, toGenreName } from "./genres.model";
+
+// SERVER
 export type Movie = {
   id: number;
   title: string;
@@ -10,6 +13,30 @@ export type Movie = {
   overview: string;
 }
 
+export type MovieDetails = Movie & {
+  adult: boolean;
+  backdrop_path: string;
+  budget: number;
+  genres: Genre[];
+  homepage: string;
+  imdb_id: string;
+  origin_country: string[];
+  original_language: string;
+  popularity: number;
+  revenue: number;
+  status: string;
+  tagline: string;
+  video: boolean; // does not indicate video existence ???
+
+  // UNUSED
+  // belongs_to_collection
+  // spoken_languages
+  // production_companies
+  // production_countries
+  // runtime
+}
+
+// CLIENT
 export type MovieItem = {
   id: number;
   title: string;
@@ -19,11 +46,6 @@ export type MovieItem = {
   overview: string;
   votes: { avg: string; count: number };
   genres: string;
-}
-
-export type Genre = {
-  id: number;
-  name: string;
 }
 
 const POSTER_PATH = 'https://media.themoviedb.org/t/p/w94_and_h141_bestv2';
@@ -41,10 +63,7 @@ export const toMovieItem = (genres: Map<number, string>) => (movie: Movie): Movi
       avg: `${movie.vote_average.toFixed(1)}%`,
       count: movie.vote_count
     },
-    genres: movie.genre_ids.map(genre => genres.get(genre)!).join(", ")
+    genres: movie.genre_ids.map(toGenreName(genres)).join(", ")
   };
 }
 
-export const toGenreMap = (genres: Genre[]): Map<number, string> => {
-  return new Map(genres.map(({id, name}) => [id, name]));
-}

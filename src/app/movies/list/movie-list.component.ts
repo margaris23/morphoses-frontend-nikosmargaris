@@ -1,6 +1,7 @@
 import { Component, ElementRef, inject, afterNextRender, OnDestroy } from '@angular/core';
 import { MoviesService } from '../movies.service';
 import { AsyncPipe } from '@angular/common';
+import { MovieItemComponent } from '../item/movie-item.component';
 
 const OBSERVER_CONFIG = {
   rootMargin: "0%",
@@ -9,15 +10,15 @@ const OBSERVER_CONFIG = {
 
 @Component({
   selector: 'app-movie-list',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, MovieItemComponent],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css'
 })
 export class MovieListComponent implements OnDestroy {
-  private movieService = inject(MoviesService);
+  private moviesService = inject(MoviesService);
   private observer!: IntersectionObserver;
 
-  protected movies$ = this.movieService.movies();
+  protected movies$ = this.moviesService.movies();
 
   constructor() {
     const elementRef = inject(ElementRef);
@@ -28,7 +29,7 @@ export class MovieListComponent implements OnDestroy {
       this.observer = new IntersectionObserver(
         ([entry]: IntersectionObserverEntry[]) => {
           if (entry.isIntersecting) {
-            this.movieService.loadMore();
+            this.moviesService.loadMore();
           }
         },
         { root, ...OBSERVER_CONFIG }
