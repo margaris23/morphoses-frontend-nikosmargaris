@@ -52,6 +52,11 @@
     margin-top: 0.5rem;
   }
 
+  .movie-meta {
+    display: flex;
+    gap: var(--space-md);
+  }
+
 }
 
 .movies article~article {

@@ -1,7 +1,11 @@
 import { Component, ElementRef, inject, afterNextRender, OnDestroy } from '@angular/core';
 import { MoviesService } from '../movies.service';
 import { AsyncPipe } from '@angular/common';
-import { tap } from 'rxjs';
+
+const OBSERVER_CONFIG = {
+  rootMargin: "0%",
+  threshold: 1.0
+};
 
 @Component({
   selector: 'app-movie-list',
@@ -11,11 +15,9 @@ import { tap } from 'rxjs';
 })
 export class MovieListComponent implements OnDestroy {
   private movieService = inject(MoviesService);
-
   private observer!: IntersectionObserver;
-  protected movies$ = this.movieService.movies().pipe(tap(res => {
-    console.log('GOT NEW RESULTS:', res?.length);
-  }));
+
+  protected movies$ = this.movieService.movies();
 
   constructor() {
     const elementRef = inject(ElementRef);
@@ -29,7 +31,7 @@ export class MovieListComponent implements OnDestroy {
             this.movieService.loadMore();
           }
         },
-        { root, rootMargin: "0%", threshold: 1.0 }
+        { root, ...OBSERVER_CONFIG }
       );
 
       this.observer.observe(root.querySelector("#loading"));
