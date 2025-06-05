@@ -6,5 +6,7 @@ main {
   display: flex;
   flex-direction: column;
   place-items: center;
+
+  height: calc(100vh - 4rem);
 }
 
