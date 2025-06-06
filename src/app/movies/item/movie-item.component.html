@@ -7,7 +7,11 @@
         <time attr.datetime={{movie().releaseDate}}>{{movie().releaseDate | date}}</time></span>&nbsp;
       <span>Score: {{movie().votes.avg}} (voted: {{movie().votes.count}})</span>
     </p>
-    <p>{{movie().genres}}</p>
+    <p class="genres">
+      @for (genre of movie().genres; track genre) {
+      <span>{{genre}}</span>
+      }
+    </p>
     <p class="overview">{{movie().overview}}</p>
   </div>
 

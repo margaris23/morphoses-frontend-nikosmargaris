@@ -6,10 +6,11 @@ import { VideoItem } from '../videos.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Review } from '../reviews.model';
 import { MovieDetailsView, SlimMovieItem } from '../movies.model';
+import { TruncatePipe } from '../../truncate.pipe';
 
 @Component({
   selector: 'app-movie-item-info',
-  imports: [AsyncPipe, CurrencyPipe],
+  imports: [AsyncPipe, CurrencyPipe, TruncatePipe],
   templateUrl: './movie-item-info.component.html',
   styleUrl: './movie-item-info.component.css'
 })

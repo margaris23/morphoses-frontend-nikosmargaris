@@ -14,7 +14,12 @@ h4 {
   margin-bottom: var(--space-sm);
 }
 
-section ~ section:not(:last-child) {
+h5 {
+  font-size: 1em;
+  margin-bottom: var(--space-sm);
+}
+
+section~section:not(:last-child) {
   margin-bottom: var(--space-md);
 }
 
@@ -28,7 +33,7 @@ ul.similar {
   overflow-x: scroll;
   overflow-y: hidden;
 
-  > li {
+  >li {
     flex: 1 0 auto;
   }
 }
@@ -46,4 +51,17 @@ a::after {
 
 a:hover::after {
   width: 100%;
+}
+
+.reviews {
+  article~article {
+    margin-top: var(--space-md);
+  }
+
+  .author {
+    color: var(--accent-primary);
+    background-color: var(--black);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--border-medium);
+  }
 }

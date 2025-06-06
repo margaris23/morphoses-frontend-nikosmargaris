@@ -33,7 +33,7 @@ section {
   .reset-btn {
     position: absolute;
     border-style: none;
-    border-radius: 25px;
+    border-radius: var(--border-lg);
     right: 1rem;
     top: 0.675rem;
     width: 1.5rem;

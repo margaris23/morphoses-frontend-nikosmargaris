@@ -35,7 +35,7 @@ export type MovieItem = {
   releaseDate: string;
   overview: string;
   votes: { avg: string; count: number };
-  genres: string;
+  genres: string[];
 }
 
 export type SlimMovieItem = {
@@ -67,7 +67,7 @@ export const toMovieItem = (genres: Map<number, string>) => (movie: Movie): Movi
       avg: `${movie.vote_average.toFixed(1)}%`,
       count: movie.vote_count
     },
-    genres: movie.genre_ids.map(toGenreName(genres)).join(", ")
+    genres: movie.genre_ids.map(toGenreName(genres))
   };
 }
 

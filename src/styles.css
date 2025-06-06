@@ -13,12 +13,15 @@
   --header-bg: rgba(0, 0, 0, 0.85);
   --overlay-bg: rgba(0, 0, 0, 0.75);
 
-  --border-medium: 8px;
+  --border-md: 8px;
+  --border-sm: 4px;
+  --border-lg: 24px;
 
   --font-xl: 2.5em;
   --font-lg: 2em;
   --font-md: 1.5em;
 
+  --space-xs: 0.125rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 2rem;

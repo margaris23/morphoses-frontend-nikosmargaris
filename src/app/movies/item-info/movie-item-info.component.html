@@ -16,23 +16,22 @@
 @let videos = videos$ | async;
 @if (videos && videos.length > 0) {
 <section>
-  <h4>Trailers</h4>
+  <h4>Trailer</h4>
   @for (video of videos; track video.id) {
-  <iframe [src]="getSafeResourceUrl(video.url)" frameborder="0" allowfullscreen
-    width="560" height="315"></iframe>
+  <iframe [src]="getSafeResourceUrl(video.url)" frameborder="0" allowfullscreen width="560" height="315"></iframe>
   }
 </section>
 }
 
 @let reviews = reviews$ | async;
 @if (reviews && reviews.length > 0) {
-<section>
+<section class="reviews">
   <h4>What others say</h4>
   @for (review of reviews; track review.id) {
-  <details>
-    <p>{{review.content}}</p>
-    <summary>{{review.author}} ...</summary>
-  </details>
+  <article>
+    <h5>Review by <span class="author">{{review.author}}</span></h5>
+    <p>{{review.content | truncate}}</p>
+  </article>
   }
 </section>
 }

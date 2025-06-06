@@ -59,6 +59,17 @@ article {
   .more {
     grid-area: more;
   }
+
+  .genres {
+    margin: var(--space-sm) 0;
+
+    span {
+      margin-right: var(--space-sm);
+      background-color: var(--black);
+      border-radius: var(--border-md);
+      padding: var(--space-sm) var(--space-md);
+    }
+  }
 }
 
 article:hover {
