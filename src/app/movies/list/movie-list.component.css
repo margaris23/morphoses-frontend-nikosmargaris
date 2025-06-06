@@ -11,10 +11,11 @@
     top: 0;
     width: 100%;
     text-align: center;
-    background-color: var(--header-bg);
+    font-size: var(--font-xl);
+    margin: var(--space-lg);
   }
 }
 
-.movies > * ~ * {
+.movies>*~* {
   margin-top: var(--space-md);
 }

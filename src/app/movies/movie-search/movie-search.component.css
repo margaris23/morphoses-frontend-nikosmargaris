@@ -9,4 +9,39 @@
 section {
   padding: var(--space-lg);
   background-color: var(--header-bg);
+  width: 100%;
+  display: flex;
+  place-items: center;
+  flex-direction: column;
+
+  h2 {
+    font-size: var(--font-lg);
+  }
+
+  form {
+    position: relative;
+    width: clamp(50%, 300px, 60%);
+  }
+
+  input {
+    border-style: none;
+    border-radius: 25px;
+    padding: 12px 20px 12px 20px;
+    width: 100%;
+  }
+
+  .reset-btn {
+    position: absolute;
+    border-style: none;
+    border-radius: 25px;
+    right: 1rem;
+    top: 0.675rem;
+    width: 1.5rem;
+    background: none;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--text-muted);
+    }
+  }
 }

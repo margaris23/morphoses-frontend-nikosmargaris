@@ -23,8 +23,7 @@ export class MovieItemComponent {
     });
   }
 
-  toggle(event: Event): void {
-    event.preventDefault();
+  toggle(): void {
     this.showInfo.update(state => !state);
   }
 }

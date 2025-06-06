@@ -1,3 +1,23 @@
+:host {
+  display: grid;
+  grid-template-columns: 150px auto;
+  gap: var(--space-md);
+  padding: var(--space-sm);
+}
+
+.details {
+  grid-row: 1 / 4;
+}
+
+h4 {
+  font-size: var(--font-md);
+  margin-bottom: var(--space-sm);
+}
+
+section ~ section:not(:last-child) {
+  margin-bottom: var(--space-md);
+}
+
 ul.similar {
   display: flex;
   list-style: none;
@@ -11,10 +31,6 @@ ul.similar {
   > li {
     flex: 1 0 auto;
   }
-}
-
-.last-section {
-  padding-bottom: var(--space-md);
 }
 
 a::after {

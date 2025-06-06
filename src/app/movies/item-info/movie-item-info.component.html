@@ -1,7 +1,7 @@
 @let details = details$ | async;
 
 @if (details) {
-<section>
+<section class="details">
   <h4>Details</h4>
   <p><a [href]="details.homepage" target="_blank">HomePage</a></p>
   <p>Origin:
@@ -39,7 +39,7 @@
 
 @let similar = similar$ | async;
 @if (similar && similar.length > 0) {
-<section class="last-section">
+<section>
   <h4>You might also like</h4>
   <ul class="similar">
     @for (video of similar; track video.id) {

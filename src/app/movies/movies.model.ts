@@ -52,7 +52,7 @@ export type MovieDetailsView = {
   languages: string;
 }
 
-const POSTER_PATH = 'https://media.themoviedb.org/t/p/w94_and_h141_bestv2';
+const POSTER_PATH = 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2';
 const NO_IMAGE = '/no_image.svg';
 
 export const toMovieItem = (genres: Map<number, string>) => (movie: Movie): MovieItem => {
