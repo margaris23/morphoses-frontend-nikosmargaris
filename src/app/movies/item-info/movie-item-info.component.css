@@ -16,3 +16,18 @@ ul.similar {
 .last-section {
   padding-bottom: var(--space-md);
 }
+
+a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}

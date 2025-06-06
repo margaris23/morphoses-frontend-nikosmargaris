@@ -8,11 +8,10 @@
   place-items: center;
 
   h2 {
-    position: sticky;
     top: 0;
     width: 100%;
     text-align: center;
-    background-color: white;
+    background-color: var(--header-bg);
   }
 }
 

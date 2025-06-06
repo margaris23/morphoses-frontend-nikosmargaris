@@ -1,5 +1,5 @@
-<article>
-  <div>
+<article [class.expanded]="isExpanded()">
+  <a (click)="toggle($event)">
     <h3>{{ movie().title }}</h3>
     <span class="original-title">({{movie().originalTitle}})</span>
     <p class="movie().meta">
@@ -10,11 +10,10 @@
     <p>{{movie().genres}}</p>
     <p class="overview">{{movie().overview}}</p>
 
-    <button (click)="toggle()">Toggle</button>
-
     @if(showInfo()) {
-    <app-movie-item-info [id]="movie().id" />
+    <app-movie-item-info [id]="movie().id" (contentReady)="isExpanded.set(true)" />
     }
-  </div>
+  </a>
+
   <img src={{movie().poster}} alt={{movie().title}} height="141" width="94">
 </article>

@@ -1,7 +1,7 @@
-import { Component, effect, inject, input } from '@angular/core';
+import { Component, effect, inject, input, output, signal } from '@angular/core';
 import { MoviesService } from '../movies.service';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { VideoItem } from '../videos.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Review } from '../reviews.model';
@@ -15,8 +15,11 @@ import { MovieDetailsView, SlimMovieItem } from '../movies.model';
 })
 export class MovieItemInfoComponent {
   id = input.required<number>();
+  contentReady = output<void>();
+
   private moviesService = inject(MoviesService);
   private sanitizer = inject(DomSanitizer);
+  private counter = signal<number>(0);
 
   details$: Observable<MovieDetailsView> | undefined;
   videos$: Observable<VideoItem[]> | undefined;
@@ -25,10 +28,20 @@ export class MovieItemInfoComponent {
 
   constructor() {
     effect(() => {
-      this.details$ = this.moviesService.details(this.id());
-      this.videos$ = this.moviesService.videos(this.id());
-      this.reviews$ = this.moviesService.reviews(this.id());
-      this.similar$ = this.moviesService.similar(this.id());
+      this.details$ = this.moviesService.details(this.id())
+        .pipe(tap(() => this.counter.update(cnt => cnt + 1)));
+      this.videos$ = this.moviesService.videos(this.id())
+        .pipe(tap(() => this.counter.update(cnt => cnt + 1)));
+      this.reviews$ = this.moviesService.reviews(this.id())
+        .pipe(tap(() => this.counter.update(cnt => cnt + 1)));
+      this.similar$ = this.moviesService.similar(this.id())
+        .pipe(tap(() => this.counter.update(cnt => cnt + 1)));
+    });
+
+    effect(() => {
+      if (this.counter() > 3) {
+        this.contentReady.emit();
+      }
     });
   }
 

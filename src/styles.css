@@ -1,14 +1,46 @@
 :root {
-  --color-gray: lightgray;
+  --black: #1a1b23;
+  --white: #eee;
+  --bg-gradient-start: #121212;
+  --bg-gradient-end: #1e1e1e;
+  --accent-primary: #e50914;
+  --accent-secondary: #9721bd;
+  --text-light: #ffffff;
+  --text-muted: #b3b3b3;
+  --text-dark: #181818;
+  --card-bg: #2c2c2c;
+  --card-hover: #333333;
+  --header-bg: rgba(0, 0, 0, 0.85);
+  --overlay-bg: rgba(0, 0, 0, 0.75);
 
   --border-medium: 8px;
 
   --space-sm: 0.5rem;
   --space-md: 1rem;
+  --space-lg: 2rem;
 
-  --shadow-color: rgba(26, 30, 34, 0.08);
+  --shadow: rgba(26, 30, 34, 0.08);
+}
+
+body {
+  font-family: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 200;
+  line-height: 1.4;
+  color: var(--white);
+  background: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
 }
 
 .cards {
-  --card-border-color: var(--color-gray);
+  --card-border-color: var(--gray);
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+a:visited {
+  all: unset;
+}
+

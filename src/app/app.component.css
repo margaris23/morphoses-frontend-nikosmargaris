@@ -1,5 +1,9 @@
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding-left: var(--space-md);
+  background-color: var(--header-bg);
 }
 
 main {
@@ -8,5 +12,12 @@ main {
   place-items: center;
 
   height: calc(100vh - 4rem);
+}
+
+.title {
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 

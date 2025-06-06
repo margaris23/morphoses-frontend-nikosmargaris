@@ -1,0 +1,12 @@
+:host {
+  width: 100%;
+  display: flex;
+  place-items: center;
+  place-content: center;
+  background-color: var(--header-bg);
+}
+
+section {
+  padding: var(--space-lg);
+  background-color: var(--header-bg);
+}
