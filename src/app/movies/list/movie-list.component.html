@@ -1,7 +1,12 @@
+@let movies = movies$ | async;
 <section class="cards movies">
   <h2>Playing now</h2>
-  @for (movie of movies$ | async; track movie.id) {
-    <app-movie-item [movie]="movie" />
+  @for (movie of movies; track movie.id) {
+  <app-movie-item [movie]="movie" />
+  }
+  @if (movies && !movies.length) {
+  <p class="no-results">Sorry! No Results</p>
+  <p>Try searching something else</p>
   }
   <p id="loading" style="height: 40px"> </p>
 </section>

@@ -15,6 +15,11 @@
     font-size: var(--font-xl);
     margin: var(--space-lg);
   }
+
+  .no-results {
+    font-size: var(--font-md);
+    text-transform: uppercase;
+  }
 }
 
 .movies>*~* {
