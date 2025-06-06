@@ -1,0 +1,18 @@
+ul.similar {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  flex-direction: row;
+  gap: var(--space-sm);
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  > li {
+    flex: 1 0 auto;
+  }
+}
+
+.last-section {
+  padding-bottom: var(--space-md);
+}

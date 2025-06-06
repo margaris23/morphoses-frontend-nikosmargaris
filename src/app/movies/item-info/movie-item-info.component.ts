@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { VideoItem } from '../videos.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Review } from '../reviews.model';
-import { MovieDetails, MovieDetailsView, MovieItem } from '../movies.model';
+import { MovieDetailsView, SlimMovieItem } from '../movies.model';
 
 @Component({
   selector: 'app-movie-item-info',
@@ -21,7 +21,7 @@ export class MovieItemInfoComponent {
   details$: Observable<MovieDetailsView> | undefined;
   videos$: Observable<VideoItem[]> | undefined;
   reviews$: Observable<Review[]> | undefined;
-  similar$: Observable<MovieItem[]> | undefined;
+  similar$: Observable<SlimMovieItem[]> | undefined;
 
   constructor() {
     effect(() => {

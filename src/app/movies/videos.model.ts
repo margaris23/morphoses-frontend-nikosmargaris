@@ -18,4 +18,4 @@ export const toVideoItem = (video: Video): VideoItem => ({
 });
 
 // filtering
-export const byVideoTeaser = (video: Video): boolean => video.official && video.type === "Teaser";
+export const byVideoTrailer = (video: Video): boolean => video.official && video.type === "Trailer";

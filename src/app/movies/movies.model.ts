@@ -38,6 +38,12 @@ export type MovieItem = {
   genres: string;
 }
 
+export type SlimMovieItem = {
+  id: number;
+  title: string;
+  poster: string;
+}
+
 export type MovieDetailsView = {
   budget: number;
   revenue: number;
@@ -65,6 +71,14 @@ export const toMovieItem = (genres: Map<number, string>) => (movie: Movie): Movi
   };
 }
 
+export const toSlimMovieItem = (movie: Movie): SlimMovieItem => {
+  return {
+    id: movie.id,
+    title: movie.title,
+    poster: movie.poster_path ? `${POSTER_PATH}${movie.poster_path}` : NO_IMAGE,
+  };
+}
+
 export const toMovieDetailsView = (details: MovieDetails): MovieDetailsView => {
   const { budget, revenue, homepage } = details;
   return {
@@ -75,3 +89,8 @@ export const toMovieDetailsView = (details: MovieDetails): MovieDetailsView => {
     languages: details.spoken_languages.map(lang => lang.iso_639_1).join(', ')
   };
 }
+
+// filter
+export const byMoviePosterPath = ({ poster_path }: { poster_path: string }): boolean =>
+  !!poster_path;
+

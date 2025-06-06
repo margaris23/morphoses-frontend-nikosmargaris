@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, switchMap, BehaviorSubject, combineLatest, scan, distinctUntilChanged, shareReplay, withLatestFrom } from 'rxjs';
-import { Movie, MovieDetails, MovieDetailsView, MovieItem, toMovieDetailsView, toMovieItem } from './movies.model';
+import { map, Observable, switchMap, BehaviorSubject, combineLatest, scan, distinctUntilChanged, shareReplay } from 'rxjs';
+import { byMoviePosterPath, Movie, MovieDetails, MovieDetailsView, MovieItem, SlimMovieItem, toMovieDetailsView, toMovieItem, toSlimMovieItem } from './movies.model';
 import { APIListResult } from '../api.model';
 import { APIService } from '../api.service';
-import { byVideoTeaser, toVideoItem, Video, VideoItem } from './videos.model';
+import { byVideoTrailer, toVideoItem, Video, VideoItem } from './videos.model';
 import { Genre, toGenreMap } from './genres.model';
 import { Review } from './reviews.model';
 
@@ -78,16 +78,17 @@ export class MoviesService {
   videos(id: number): Observable<VideoItem[]> {
     return this.apiService.fetch<{ results: Video[] }>(API.MOVIE_VIDEOS(id)).pipe(
       map(res => res.results
-        .filter(byVideoTeaser)
+        .filter(byVideoTrailer)
         .slice(1, 2)
         .map(toVideoItem))
     );
   }
 
-  similar(id: number): Observable<MovieItem[]> {
+  similar(id: number): Observable<SlimMovieItem[]> {
     return this.apiService.fetch<APIListResult<Movie>>(API.MOVIE_SIMILAR(id)).pipe(
-      withLatestFrom(this.genres$),
-      map(([res, genres]) => res.results.map(toMovieItem(toGenreMap(genres))))
+      map(res => res.results
+        .filter(byMoviePosterPath)
+        .map(toSlimMovieItem))
     );
   }
 

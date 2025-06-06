@@ -3,38 +3,53 @@
 @if (details) {
 <section>
   <h4>Details</h4>
-  <p><a [href]="details.homepage">HomePage</a></p>
+  <p><a [href]="details.homepage" target="_blank">HomePage</a></p>
   <p>Origin:
     <img [src]="'https://flagsapi.com/' + details.origin.country + '/shiny/32.png'">
     ({{details.origin.language}})
   </p>
-  <p>Budget: {{details.budget | currency}} / Revenue: {{details.revenue | currency}}</p>
+  <p>Budget: {{details.budget | currency:'USD':'symbol':'.0'}} / Revenue: {{details.revenue |
+    currency:'USD':'symbol':'.0'}}</p>
   <p>Languages: {{details.languages}} </p>
 </section>
 
+@let videos = videos$ | async;
+@if (videos && videos.length > 0) {
 <section>
   <h4>Trailers</h4>
-  @for (video of videos$ | async; track video.id) {
-  <iframe [src]="getSafeResourceUrl(video.url)" frameborder="0" allowfullscreen width="560" height="315"></iframe>
+  @for (video of videos; track video.id) {
+  <iframe [src]="getSafeResourceUrl(video.url)" frameborder="0" allowfullscreen
+    width="560" height="315"></iframe>
   }
 </section>
+}
 
+@let reviews = reviews$ | async;
+@if (reviews && reviews.length > 0) {
 <section>
-  <h4>Reviews</h4>
-  @for (review of reviews$ | async; track review.id) {
+  <h4>What others say</h4>
+  @for (review of reviews; track review.id) {
   <details>
     <p>{{review.content}}</p>
-    <summary>What {{review.author}} said ...</summary>
+    <summary>{{review.author}} ...</summary>
   </details>
   }
 </section>
+}
 
-<section>
-  <h4>Recommendations</h4>
-  @for (video of similar$ | async; track video.id) {
-  <img [src]="video.poster" alt="video.title">
-  }
+@let similar = similar$ | async;
+@if (similar && similar.length > 0) {
+<section class="last-section">
+  <h4>You might also like</h4>
+  <ul class="similar">
+    @for (video of similar; track video.id) {
+    <li>
+      <img [src]="video.poster" alt="video.title" width="94" height="141">
+    </li>
+    }
+  </ul>
 </section>
+}
 
 } @else {
 Loading...
