@@ -8,7 +8,6 @@ const SEARCH_TEXT_MIN_SIZE = 3;
 
 @Component({
   selector: 'app-movie-search',
-  imports: [],
   templateUrl: './movie-search.component.html',
   styleUrl: './movie-search.component.css'
 })

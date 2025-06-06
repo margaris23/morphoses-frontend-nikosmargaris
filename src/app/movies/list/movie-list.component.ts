@@ -2,6 +2,7 @@ import { Component, ElementRef, inject, afterNextRender, OnDestroy } from '@angu
 import { MoviesService } from '../movies.service';
 import { AsyncPipe } from '@angular/common';
 import { MovieItemComponent } from '../item/movie-item.component';
+import { tap } from 'rxjs';
 
 const OBSERVER_CONFIG = {
   rootMargin: "0%",
@@ -17,14 +18,21 @@ const OBSERVER_CONFIG = {
 export class MovieListComponent implements OnDestroy {
   private moviesService = inject(MoviesService);
   private observer!: IntersectionObserver;
+  private elementRef = inject(ElementRef);
 
-  protected movies$ = this.moviesService.movies();
+  protected movies$ = this.moviesService.movies().pipe(
+    tap(results => {
+      if (results.length <= 20) {
+        setTimeout(() => {
+          this.elementRef.nativeElement.scrollTo?.({ top: 0, behavior: 'smooth' });
+        });
+      }
+    })
+  );
 
   constructor() {
-    const elementRef = inject(ElementRef);
-
     afterNextRender(() => {
-      const root = elementRef.nativeElement;
+      const root = this.elementRef.nativeElement;
 
       this.observer = new IntersectionObserver(
         ([entry]: IntersectionObserverEntry[]) => {
