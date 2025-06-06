@@ -48,8 +48,9 @@ article {
     .show-more {
       width: 0;
     }
+
     .show-more::after {
-      content:'';
+      content: '';
     }
   }
 

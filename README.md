@@ -34,7 +34,14 @@ or
 npm run build
 ```
 
+Optionally you can test build locally
+
+```bash
+bun run serve:ssr
+```
+
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
 
 ## Running unit tests
 

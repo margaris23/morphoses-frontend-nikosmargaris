@@ -42,10 +42,13 @@ const API_HOST = "https://api.themoviedb.org";
 const API_VERSION = "3";
 const API_KEY = "eb46c700349d0bc443b533a821cec5db";
 
-app.get('/api/movie/now_playing', corsMiddleware, (req, res) => {
-  const api_url = `${API_HOST}/${API_VERSION}/movie/now_playing?api_key=${API_KEY}`;
+const makeRequest = (url: string, req: any, res: any) => {
+  const params = new URLSearchParams(req.query);
+  params.set("api_key", API_KEY);
 
-  const apiReq = https.request(api_url, (apiRes: any) => {
+  const final_url = `${url}?${params}`;
+
+  const apiReq = https.request(final_url, (apiRes: any) => {
     res.set({
       'Content-Type': apiRes.headers['content-type'],
       'Content-Length': apiRes.headers['content-length']
@@ -58,11 +61,37 @@ app.get('/api/movie/now_playing', corsMiddleware, (req, res) => {
 
   apiReq.on('error', (err: any) => {
     console.error('Error calling external API:', err);
-    res.status(500).json({ error: 'movie/now_playing API Failed' });
+    res.status(500).json({ error: `${url} API Failed` });
   });
 
-  apiReq.end();
+  apiReq.end()
+}
+
+app.get('/api/genre/movie/list', corsMiddleware, (req, res) => {
+  const api_url = `${API_HOST}/${API_VERSION}/genre/movie/list`;
+  makeRequest(api_url, req, res);
 });
+
+app.get('/api/movie/now_playing', corsMiddleware, (req, res) => {
+  const api_url = `${API_HOST}/${API_VERSION}/movie/now_playing`;
+  makeRequest(api_url, req, res);
+});
+
+app.get('/api/search/movie', corsMiddleware, (req, res) => {
+  const api_url = `${API_HOST}/${API_VERSION}/search/movie`;
+  makeRequest(api_url, req, res);
+});
+
+app.get('/api/movie/:id/:option', corsMiddleware, (req, res) => {
+  const api_url = `${API_HOST}/${API_VERSION}/movie/${req.params.id}/${req.params.option}`;
+  makeRequest(api_url, req, res);
+});
+
+app.get('/api/movie/:id', corsMiddleware, (req, res) => {
+  const api_url = `${API_HOST}/${API_VERSION}/movie/${req.params.id}`;
+  makeRequest(api_url, req, res);
+});
+
 
 /**
  * Serve static files from /browser
