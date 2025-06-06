@@ -29,6 +29,8 @@ export class MoviesService {
     map(res => res.genres)
   );
 
+  readonly DEFAULT_PAGE_SIZE = 20;
+
   movies(): Observable<MovieItem[]> {
     return combineLatest([this.query$, this.page$, this.genres$]).pipe(
       // check if filtering changed
@@ -51,7 +53,6 @@ export class MoviesService {
           map(reply => ({
             results: reply.results.map(toMovieItem(toGenreMap(genres))),
             page: reply.page,
-            query
           })))
       ),
       // accumulate results if page changed
@@ -60,7 +61,6 @@ export class MoviesService {
           return {
             results: [...acc.results, ...res.results],
             page: res.page,
-            query: res.query
           };
         }
         return res;

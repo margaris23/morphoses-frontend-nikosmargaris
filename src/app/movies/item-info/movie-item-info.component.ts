@@ -1,4 +1,4 @@
-import { Component, effect, inject, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, output, signal } from '@angular/core';
 import { MoviesService } from '../movies.service';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { Observable, tap } from 'rxjs';
@@ -12,7 +12,8 @@ import { TruncatePipe } from '../../truncate.pipe';
   selector: 'app-movie-item-info',
   imports: [AsyncPipe, CurrencyPipe, TruncatePipe ],
   templateUrl: './movie-item-info.component.html',
-  styleUrl: './movie-item-info.component.css'
+  styleUrl: './movie-item-info.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MovieItemInfoComponent {
   id = input.required<number>();

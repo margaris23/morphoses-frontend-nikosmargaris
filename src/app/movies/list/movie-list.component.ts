@@ -22,7 +22,7 @@ export class MovieListComponent implements OnDestroy {
 
   protected movies$ = this.moviesService.movies().pipe(
     tap(results => {
-      if (results.length <= 20) {
+      if (results.length <= this.moviesService.DEFAULT_PAGE_SIZE) {
         setTimeout(() => {
           this.elementRef.nativeElement.scrollTo?.({ top: 0, behavior: 'smooth' });
         });
