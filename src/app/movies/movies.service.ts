@@ -1,6 +1,12 @@
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, switchMap, BehaviorSubject, combineLatest, scan, distinctUntilChanged, shareReplay } from 'rxjs';
-import { byMoviePosterPath, Movie, MovieDetails, MovieDetailsView, MovieItem, SlimMovieItem, toMovieDetailsView, toMovieItem, toSlimMovieItem } from './movies.model';
+import {
+  map, Observable, switchMap, BehaviorSubject, combineLatest,
+  scan, distinctUntilChanged, shareReplay
+} from 'rxjs';
+import {
+  byMoviePosterPath, Movie, MovieDetails, MovieDetailsView, MovieItem,
+  SlimMovieItem, toMovieDetailsView, toMovieItem, toSlimMovieItem
+} from './movies.model';
 import { APIListResult } from '../api.model';
 import { APIService } from '../api.service';
 import { byVideoTrailer, toVideoItem, Video, VideoItem } from './videos.model';

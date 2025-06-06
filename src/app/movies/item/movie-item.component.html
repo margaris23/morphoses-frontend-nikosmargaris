@@ -1,4 +1,7 @@
-<article [class.expanded]="isExpanded()" role="button" [ariaLabel]="movie().title" (click)="toggle()">
+<article [class.expanded]="isExpanded()"
+  role="button" [ariaLabel]="movie().title"
+  (click)="toggle($event)" tabindex="0"
+  (keydown)="toggle($event)">
   <div class="content">
     <h3>{{ movie().title }}</h3>
     <span class="original-title">({{movie().originalTitle}})</span>
@@ -23,4 +26,6 @@
   @if(showInfo()) {
   <app-movie-item-info class="more" [id]="movie().id" (contentReady)="isExpanded.set(true)" />
   }
+
+  <div class="show-more"></div>
 </article>

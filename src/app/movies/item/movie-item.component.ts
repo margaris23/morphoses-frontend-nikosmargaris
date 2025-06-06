@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component, effect, ElementRef, inject, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component, effect,
+  ElementRef, inject, input, signal
+} from '@angular/core';
 import { MovieItem } from '../movies.model';
 import { MovieItemInfoComponent } from '../item-info/movie-item-info.component';
 import { DatePipe } from '@angular/common';
@@ -23,19 +26,25 @@ export class MovieItemComponent {
 
   constructor() {
     effect(() => {
-      if (!this.showInfo()) {
-        this.isExpanded.set(false);
-      } else {
+      if (this.showInfo()) {
         this.elementRef.nativeElement.scrollIntoView({
           behavior: 'smooth',
           block: 'start',
           inline: 'nearest'
         });
+      } else {
+        this.isExpanded.set(false);
       }
     });
   }
 
-  toggle(): void {
+  toggle(event: MouseEvent | KeyboardEvent): void {
+    if (event instanceof KeyboardEvent) {
+      if (event.key !== " " && event.key !== "Enter") {
+        return;
+      }
+      event.preventDefault();
+    }
     this.showInfo.update(state => !state);
   }
 }

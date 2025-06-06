@@ -11,7 +11,7 @@
   --card-bg: #2c2c2c;
   --card-hover: #333333;
   --header-bg: rgba(0, 0, 0, 0.85);
-  --overlay-bg: rgba(0, 0, 0, 0.75);
+  --overlay-bg: rgba(0, 0, 0, 0.25);
 
   --border-md: 8px;
   --border-sm: 4px;
