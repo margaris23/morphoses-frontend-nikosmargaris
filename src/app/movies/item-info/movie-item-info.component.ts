@@ -10,7 +10,7 @@ import { TruncatePipe } from '../../truncate.pipe';
 
 @Component({
   selector: 'app-movie-item-info',
-  imports: [AsyncPipe, CurrencyPipe, TruncatePipe],
+  imports: [AsyncPipe, CurrencyPipe, TruncatePipe ],
   templateUrl: './movie-item-info.component.html',
   styleUrl: './movie-item-info.component.css'
 })

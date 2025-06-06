@@ -7,6 +7,17 @@
 
 .details {
   grid-row: 1 / 4;
+
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin-bottom: var(--space-md);
+    display: flex;
+    place-items: center;
+    gap: var(--space-sm);
+  }
 }
 
 h4 {

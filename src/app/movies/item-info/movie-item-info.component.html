@@ -1,16 +1,22 @@
 @let details = details$ | async;
-
 @if (details) {
 <section class="details">
   <h4>Details</h4>
-  <p><a [href]="details.homepage" target="_blank">HomePage</a></p>
-  <p>Origin:
-    <img [src]="'https://flagsapi.com/' + details.origin.country + '/shiny/32.png'">
-    ({{details.origin.language}})
-  </p>
-  <p>Budget: {{details.budget | currency:'USD':'symbol':'.0'}} / Revenue: {{details.revenue |
-    currency:'USD':'symbol':'.0'}}</p>
-  <p>Languages: {{details.languages}} </p>
+  <dl>
+    <dt>Link</dt>
+    <dd><a [href]="details.homepage" target="_blank">Homepage</a></dd>
+    <dt>Origin</dt>
+    <dd>
+      <img [src]="'https://flagsapi.com/' + details.origin.country + '/shiny/32.png'">
+      ({{details.origin.language}})
+    </dd>
+    <dt>Budget</dt>
+    <dd>{{details.budget | currency:'USD':'symbol':'.0'}}</dd>
+    <dt>Revenue</dt>
+    <dd>{{details.revenue | currency:'USD':'symbol':'.0'}}</dd>
+    <dt>Spoken Languages</dt>
+    <dd>{{details.languages}}</dd>
+  </dl>
 </section>
 
 @let videos = videos$ | async;

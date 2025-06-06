@@ -5,7 +5,10 @@
     <p class="movie().meta">
       <span>Released:
         <time attr.datetime={{movie().releaseDate}}>{{movie().releaseDate | date}}</time></span>&nbsp;
-      <span>Score: {{movie().votes.avg}} (voted: {{movie().votes.count}})</span>
+      <span>
+        <i-lucide [img]="Star" class="star"></i-lucide>
+        <span class="score"> {{movie().votes.avg}}</span>
+        ({{movie().votes.count}} votes)</span>
     </p>
     <p class="genres">
       @for (genre of movie().genres; track genre) {

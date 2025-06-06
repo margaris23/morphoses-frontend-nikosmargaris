@@ -34,6 +34,12 @@ article {
 
   .content {
     padding: var(--space-sm) 0 0 var(--space-md);
+    display: flex;
+    flex-direction: column;
+
+    p {
+      flex: 1 auto;
+    }
   }
 
   .overview {
@@ -52,17 +58,23 @@ article {
     gap: var(--space-md);
   }
 
-  &.expanded {
-    /* grid-template-rows: 1fr 500px; */
-  }
-
   .more {
     grid-area: more;
   }
 
-  .genres {
-    margin: var(--space-sm) 0;
+  .star {
+    display: inline-block;
+    color: yellow;
+    width: 18px;
+    height: 18px;
+    fill: yellow;
+  }
 
+  .score {
+    font-weight: bold;
+  }
+
+  .genres {
     span {
       margin-right: var(--space-sm);
       background-color: var(--black);
