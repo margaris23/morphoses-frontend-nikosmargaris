@@ -23,6 +23,7 @@
         "@angular-devkit/build-angular": "^19.2.14",
         "@angular/cli": "^19.2.14",
         "@angular/compiler-cli": "^19.2.0",
+        "@axe-core/playwright": "^4.10.2",
         "@playwright/test": "1.52.0",
         "@types/express": "^4.17.17",
         "@types/jasmine": "~5.1.0",
@@ -74,6 +75,8 @@
     "@angular/router": ["@angular/router@19.2.14", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/common": "19.2.14", "@angular/core": "19.2.14", "@angular/platform-browser": "19.2.14", "rxjs": "^6.5.3 || ^7.4.0" } }, "sha512-cBTWY9Jx7YhbmDYDb7Hqz4Q7UNIMlKTkdKToJd2pbhIXyoS+kHVQrySmyca+jgvYMjWnIjsAEa3dpje12D4mFw=="],
 
     "@angular/ssr": ["@angular/ssr@19.2.14", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/common": "^19.0.0 || ^19.2.0-next.0", "@angular/core": "^19.0.0 || ^19.2.0-next.0", "@angular/platform-server": "^19.0.0 || ^19.2.0-next.0", "@angular/router": "^19.0.0 || ^19.2.0-next.0" }, "optionalPeers": ["@angular/platform-server"] }, "sha512-GV7IUSBhJXbz+pDq28xGRT7TT08M1egPn7/5vziesZOW/PF1FMCAbDV8OqQu8phSYa2D4F4ePkE9f55tRgUp3g=="],
+
+    "@axe-core/playwright": ["@axe-core/playwright@4.10.2", "", { "dependencies": { "axe-core": "~4.10.3" }, "peerDependencies": { "playwright-core": ">= 1.0.0" } }, "sha512-6/b5BJjG6hDaRNtgzLIfKr5DfwyiLHO4+ByTLB0cJgWSM8Ll7KqtdblIS6bEkwSF642/Ex91vNqIl3GLXGlceg=="],
 
     "@babel/code-frame": ["@babel/code-frame@7.27.1", "", { "dependencies": { "@babel/helper-validator-identifier": "^7.27.1", "js-tokens": "^4.0.0", "picocolors": "^1.1.1" } }, "sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg=="],
 
@@ -662,6 +665,8 @@
     "array-flatten": ["array-flatten@1.1.1", "", {}, "sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg=="],
 
     "autoprefixer": ["autoprefixer@10.4.20", "", { "dependencies": { "browserslist": "^4.23.3", "caniuse-lite": "^1.0.30001646", "fraction.js": "^4.3.7", "normalize-range": "^0.1.2", "picocolors": "^1.0.1", "postcss-value-parser": "^4.2.0" }, "peerDependencies": { "postcss": "^8.1.0" }, "bin": "bin/autoprefixer" }, "sha512-XY25y5xSv/wEoqzDyXXME4AFfkZI0P23z6Fs3YgymDnKJkCGOnkL0iTxCa85UTqaSgfcqyf3UA6+c7wUvx/16g=="],
+
+    "axe-core": ["axe-core@4.10.3", "", {}, "sha512-Xm7bpRXnDSX2YE2YFfBk2FnF0ep6tmG7xPh8iHee8MIcrgq762Nkce856dYtJYLkuIoYZvGfTs/PbZhideTcEg=="],
 
     "babel-loader": ["babel-loader@9.2.1", "", { "dependencies": { "find-cache-dir": "^4.0.0", "schema-utils": "^4.0.0" }, "peerDependencies": { "@babel/core": "^7.12.0", "webpack": ">=5" } }, "sha512-fqe8naHt46e0yIdkjUZYqddSXfej3AHajX+CSO5X7oy0EmPc6o5Xh+RClNoHjnieWz9AW4kZxW9yyFMhVB1QLA=="],
 

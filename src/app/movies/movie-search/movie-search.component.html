@@ -1,9 +1,9 @@
 <section>
   <h2>Search for a Movie</h2>
-  <form autocomplete="false">
+  <form autocomplete="false" role="search">
     <label>
       <span class="visually-hidden">Search for a movie</span>
-      <input type="text" name="text" [value]="searchInput()" (input)="search($event)">
+      <input type="search" name="text" [value]="searchInput()" (input)="search($event)">
     </label>
     <button type="button" (click)="reset()" class="reset-btn">x</button>
   </form>

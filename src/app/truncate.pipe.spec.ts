@@ -1,8 +1,10 @@
 import { TruncatePipe } from './truncate.pipe';
 
 describe('TruncatePipe', () => {
-  it('create an instance', () => {
+  it('should transform text', () => {
     const pipe = new TruncatePipe();
-    expect(pipe).toBeTruthy();
+
+    const text = "This is a good test";
+    expect(pipe.transform(text, 7)).toEqual('This is...');
   });
 });

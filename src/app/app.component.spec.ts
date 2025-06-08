@@ -4,19 +4,17 @@ import { MoviesService } from './movies/movies.service';
 import { of } from 'rxjs';
 
 describe('AppComponent', () => {
-  let moviesServiceSpy: jasmine.SpyObj<MoviesService>;
+  let moviesSpy: jasmine.SpyObj<MoviesService>;
 
   beforeEach(async () => {
-    const spy = jasmine.createSpyObj('MoviesService', ['nowPlaying']);
+    moviesSpy = jasmine.createSpyObj('MoviesService', ['movies']);
 
     await TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [{provide: MoviesService, useValue: spy}]
+      providers: [{provide: MoviesService, useValue: moviesSpy }]
     }).compileComponents();
 
-    moviesServiceSpy = TestBed.inject(MoviesService) as jasmine.SpyObj<MoviesService>;
-
-    moviesServiceSpy.nowPlaying.and.returnValue(of([]));
+    moviesSpy.movies.and.returnValue(of([]));
   });
 
   it('should create the app', () => {
