@@ -1,6 +1,4 @@
-<article [class.expanded]="isExpanded()"
-  role="button" [ariaLabel]="movie().title"
-  (click)="toggle($event)" tabindex="0"
+<article [class.expanded]="isExpanded()" role="button" [ariaLabel]="movie().title" (click)="toggle($event)" tabindex="0"
   (keydown)="toggle($event)">
   <div class="content">
     <h3>{{ movie().title }}</h3>
@@ -21,10 +19,11 @@
     <p class="overview">{{movie().overview}}</p>
   </div>
 
-  <img src={{movie().poster}} alt={{movie().title}} height="225" width="150">
+  <img [ngSrc]="movie().poster" alt={{movie().title}} height="225" width="150"
+    priority="false" placeholder="/no_image.svg" [placeholderConfig]="{ blur: true }">
 
   @if(showInfo()) {
-  <app-movie-item-info class="more" [id]="movie().id" (contentReady)="isExpanded.set(true)" />
+  <app-movie-item-info class=" more" [id]="movie().id" (contentReady)="isExpanded.set(true)" />
   }
 
   <div class="show-more"></div>

@@ -4,12 +4,12 @@ import {
 } from '@angular/core';
 import { MovieItem } from '../movies.model';
 import { MovieItemInfoComponent } from '../item-info/movie-item-info.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { LucideAngularModule, Star } from 'lucide-angular';
 
 @Component({
   selector: 'app-movie-item',
-  imports: [MovieItemInfoComponent, DatePipe, LucideAngularModule],
+  imports: [MovieItemInfoComponent, DatePipe, LucideAngularModule, NgOptimizedImage],
   templateUrl: './movie-item.component.html',
   styleUrl: './movie-item.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
