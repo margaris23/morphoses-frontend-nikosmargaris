@@ -8,6 +8,9 @@ import { Review } from '../reviews.model';
 import { MovieDetailsView, SlimMovieItem } from '../movies.model';
 import { TruncatePipe } from '../../truncate.pipe';
 
+const inc = (x: number) => x + 1;
+const MINIMUM_NUMBER_OF_FINISHED_REQUESTS = 3;
+
 @Component({
   selector: 'app-movie-item-info',
   imports: [AsyncPipe, CurrencyPipe, TruncatePipe ],
@@ -31,17 +34,17 @@ export class MovieItemInfoComponent {
   constructor() {
     effect(() => {
       this.details$ = this.moviesService.details(this.id())
-        .pipe(tap(() => this.counter.update(cnt => cnt + 1)));
+        .pipe(tap(() => this.counter.update(inc)));
       this.videos$ = this.moviesService.videos(this.id())
-        .pipe(tap(() => this.counter.update(cnt => cnt + 1)));
+        .pipe(tap(() => this.counter.update(inc)));
       this.reviews$ = this.moviesService.reviews(this.id())
-        .pipe(tap(() => this.counter.update(cnt => cnt + 1)));
+        .pipe(tap(() => this.counter.update(inc)));
       this.similar$ = this.moviesService.similar(this.id())
-        .pipe(tap(() => this.counter.update(cnt => cnt + 1)));
+        .pipe(tap(() => this.counter.update(inc)));
     });
 
     effect(() => {
-      if (this.counter() > 3) {
+      if (this.counter() > MINIMUM_NUMBER_OF_FINISHED_REQUESTS) {
         this.contentReady.emit();
       }
     });

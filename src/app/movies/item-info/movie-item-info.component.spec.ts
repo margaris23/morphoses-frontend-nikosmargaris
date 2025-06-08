@@ -45,7 +45,8 @@ describe('MovieItemInfoComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should test visibility of info', () => {
     expect(component).toBeTruthy();
+    // TODO: more tests should be added here as part of dEfinition of Done
   });
 });
