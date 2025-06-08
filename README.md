@@ -1,6 +1,7 @@
 # Morphoses Frontend Nikos Margaris Technical Assessment
 
 This is a web page about movie search, using tmdb api.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
 
 App is unit and e2e tested, and also passes Web Accessibility tests according to A and AA WCAG2/2.1 standards.
